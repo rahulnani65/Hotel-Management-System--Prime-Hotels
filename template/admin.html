@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Profiles</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+        }
+
+        #homeButton {
+            background-color: #2196F3;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        #side-panel {
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: width 0.3s;
+        }
+
+        #content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        #side-panel a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #side-panel a:hover {
+            background-color: #555;
+        }
+
+        .panel-heading {
+            margin-bottom: 15px;
+        }
+
+        .panel-content {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <div id="side-panel">
+        <h2 class="panel-heading">Navigation</h2>
+        <h2 class="panel-heading" style="color: #ddd; "><center>Admin Dashboard</center></h2>
+        <a href="#" onclick="showPanel('userDetails')">User Details</a>
+        <a href="#" onclick="showPanel('bookingDetails')">All Bookings</a>
+        <a href="#" onclick="showPanel('transactionDetails')">All Transactions</a>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content">
+        <h1>User Profile Dashboard</h1>
+
+        <!-- User Details -->
+        <div id="userDetails" class="panel-content">
+            <h2>User Details</h2>
+            <table id="userTable">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody"></tbody>
+            </table>
+        </div>
+
+        <!-- All Bookings -->
+        <div id="bookingDetails" style="display: none;" class="panel-content">
+            <h2>All Bookings</h2>
+            <table id="bookingTable">
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>User ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Room Type</th>
+                        <th>Bedding Type</th>
+                        <th>Number of Rooms</th>
+                        <th>Check-In Date</th>
+                        <th>Check-Out Date</th>
+                        <th>Total Cost</th>
+                    </tr>
+                </thead>
+                <tbody id="bookingTableBody"></tbody>
+            </table>
+        </div>
+
+        <!-- All Transactions -->
+        <div id="transactionDetails" style="display: none;" class="panel-content">
+            <h2>All Transactions</h2>
+            <table id="transactionTable">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>User ID</th>
+                        <th>Amount</th>
+                        <th>Card Number</th>
+                        <th>Expiry Date</th>
+                        <th>CVV</th>
+                    </tr>
+                </thead>
+                <tbody id="transactionTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+   
+<script>
+
+
+       // Function to fetch and display all users
+       function fetchAllUsers() {
+        fetch('/api/user/all-users')
+            .then(response => response.json())
+            .then(data => {
+                console.log('All Users:', data);
+                displayAllUsers(data);
+            })
+            .catch(error => console.error('Error fetching all users:', error));
+    }
+
+    // Function to display all users in the table
+    function displayAllUsers(allUsers) {
+        const userTableBody = document.getElementById('userTableBody');
+        userTableBody.innerHTML = ''; 
+
+        allUsers.forEach(user => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${user[0]}</td>
+                <td>${user[1]}</td>
+                <td>${user[2]}</td>
+            `;
+            userTableBody.appendChild(row);
+        });
+    }
+     // Function to fetch and display all user bookings
+     function fetchAllBookings() {
+            fetch('/api/user/all-bookings')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('All Bookings:', data);
+                    displayAllBookings(data);
+                })
+                .catch(error => console.error('Error fetching all bookings:', error));
+        }
+
+
+        // Function to display all user bookings in the table
+        function displayAllBookings(allBookings) {
+            const bookingTableBody = document.getElementById('bookingTableBody');
+            bookingTableBody.innerHTML = ''; 
+
+            allBookings.forEach(booking => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${booking[0]}</td>
+                    <td>${booking[1]}</td>
+                    <td>${booking[2]}</td>
+                    <td>${booking[3]}</td>
+                    <td>${booking[4]}</td>
+                    <td>${booking[5]}</td>
+                    <td>${booking[6]}</td>
+                    <td>${booking[7]}</td>
+                    <td>${booking[8]}</td>
+                    <td>${booking[9]}</td>
+                    <td>${booking[10]}</td>
+                    <td>${booking[11]}</td>
+                `;
+                bookingTableBody.appendChild(row);
+            });
+        }
+
+        // Function to fetch and display all user transactions
+        function fetchAllTransactions() {
+            fetch('/api/user/all-transactions')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('All Transactions:', data);
+                    displayAllTransactions(data);
+                })
+                .catch(error => console.error('Error fetching all transactions:', error));
+        }
+
+        // Function to display all user transactions in the table
+        function displayAllTransactions(allTransactions) {
+            const transactionTableBody = document.getElementById('transactionTableBody');
+            transactionTableBody.innerHTML = ''; 
+
+            allTransactions.forEach(transaction => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${transaction[0]}</td>
+                    <td>${transaction[1]}</td>
+                    <td>${transaction[2]}</td>
+                    <td>${transaction[3]}</td>
+                    <td>${transaction[4]}</td>
+                    <td>${transaction[5]}</td>
+                `;
+                transactionTableBody.appendChild(row);
+            });
+        }
+
+        // Fetch and display all user details, bookings, and transactions when the page loads
+        window.onload = function () {
+            fetchAllUsers();
+            fetchAllBookings();
+            fetchAllTransactions();
+        };
+
+    function showPanel(panelId) {
+            const panels = ['userDetails', 'bookingDetails', 'transactionDetails'];
+
+            // Hide all panels
+            panels.forEach(panel => {
+                const element = document.getElementById(panel);
+                element.style.display = 'none';
+            });
+
+            // Show the selected panel
+            document.getElementById(panelId).style.display = 'block';
+        }
+
+
+</script>
+
+</body>
+</html>

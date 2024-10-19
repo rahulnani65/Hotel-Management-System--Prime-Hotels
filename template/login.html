@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="../static/assets/css/styles.css">
+
+    <!-- ===== BOX ICONS ===== -->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Responsive Login Form Sign In Sign Up</title>
+</head>
+<body>
+    <div class="login">
+        <div class="login__content">
+            <div class="login__img">
+                <img src="../static/assets/img/img-login.svg" alt="">
+            </div>
+
+            <div class="login__forms">
+                <form action="/login.html" method="POST" class="login__registre" id="login-in" >
+                    <h1 class="login__title">Sign In</h1>
+                
+                    <div class="login__box">
+                        <i class='bx bx-user login__icon'></i>
+                        <input type="text" id="username" name="username" placeholder="Username" class="login__input" required>
+                    </div>
+                
+                    <div class="login__box">
+                        <i class='bx bx-lock-alt login__icon'></i>
+                        <input type="password" id="password" name="password" placeholder="Password" class="login__input" required>
+                    </div>
+                
+                    <a href="#" class="login__forgot">Forgot password?</a>
+                
+                    <button type="submit" class="login__button">Sign In</button>
+                
+                    <div>
+                        <span class="login__account">Don't have an Account?</span>
+                        <a href="#" class="login__signin" id="sign-up">Sign Up</a>
+                    </div>
+                </form>
+
+                <form action="signup" method="post" class="login__create none" id="login-up">
+                    <h1 class="login__title">Create Account</h1>
+
+                    <div class="login__box">
+                        <i class='bx bx-user login__icon'></i>
+                        <input type="text" name="username" placeholder="Username" class="login__input" required>
+                    </div>
+
+                    <div class="login__box">
+                        <i class='bx bx-at login__icon'></i>
+                        <input type="text" name="email" placeholder="Email" class="login__input" required>
+                    </div>
+
+                    <div class="login__box">
+                        <i class='bx bx-lock-alt login__icon'></i>
+                        <input type="password" name="password" placeholder="Password" class="login__input" required>
+                    </div>
+
+                    <button type="submit" class="login__button">Sign Up</button>
+
+                    <div>
+                        <span class="login__account">Already have an Account?</span>
+                        <a href="#" class="login__signup"  id="sign-in">Sign In</a>
+                    </div>
+
+                    <div class="login__social">
+                        <a href="#" class="login__social-icon"><i class='bx bxl-facebook' ></i></a>
+                        <a href="#" class="login__social-icon"><i class='bx bxl-twitter' ></i></a>
+                        <a href="#" class="login__social-icon"><i class='bx bxl-google' ></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--===== MAIN JS =====-->
+    <script>
+        // Validation function for login form
+        function validateLoginForm() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            if (username.trim() === '' || password.trim() === '') {
+                alert('Please enter both username and password.');
+            } else {
+                document.getElementById('login-in').submit();
+            }
+        }
+
+        // Toggle between sign-in and sign-up forms
+        const signUp = document.getElementById('sign-up');
+        const signIn = document.getElementById('sign-in');
+        const loginIn = document.getElementById('login-in');
+        const loginUp = document.getElementById('login-up');
+
+        signUp.addEventListener('click', () => {
+            loginIn.classList.remove('block');
+            loginUp.classList.remove('none');
+            loginIn.classList.toggle('none');
+            loginUp.classList.toggle('block');
+        });
+
+        signIn.addEventListener('click', () => {
+            loginIn.classList.remove('none');
+            loginUp.classList.remove('block');
+            loginIn.classList.toggle('block');
+            loginUp.classList.toggle('none');
+        });
+         // Validation function for login form
+    function validateLoginForm() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+
+        if (username.trim() === '' || password.trim() === '') {
+            alert('Please enter both username and password.');
+        } else {
+            // The form will be submitted naturally to the '/login.html' route
+        }
+    }
+
+    // Validation function for signup form
+    function validateSignupForm() {
+        var signupUsername = document.getElementById('signup-username').value;
+        var signupEmail = document.getElementById('signup-email').value;
+        var signupPassword = document.getElementById('signup-password').value;
+
+        // Basic email format validation
+        var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        if (!emailRegex.test(signupEmail)) {
+            alert('Invalid email format');
+            return;
+        }
+
+        // Password complexity validation (at least 8 characters)
+        if (signupPassword.length < 8) {
+            alert('Password must be at least 8 characters long');
+            return;
+        }
+
+        // The form will be submitted naturally to the '/signup' route
+    }
+    
+    </script>
+
+    <script src="../static/assets/js/main.js"></script>
+</body>
+</html>

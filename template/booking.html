@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrimeHotel</title>
+    <!-- Bootstrap Styles -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- FontAwesome Styles -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .container {
+            background-color: #fff;
+            margin-top: 50px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #5cb85c;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Reservation Form</h1>
+        <form name="form" method="post" action="submit_reservation">
+            <!-- Personal Information -->
+            <div class="form-group">
+                <label>First Name</label>
+                <input name="fname" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input name="lname" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input name="email" type="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input name="phone" type="text" class="form-control" required>
+            </div>
+
+            <!-- Reservation Information -->
+            <div class="form-group">
+                <label>Type Of Room *</label>
+                <select name="troom" class="form-control" required>
+                    <option value="Superior Room" >Luxury Room</option>
+                    <option value="Deluxe Room" >Deluxe Room</option>
+                    <option value="Guest House" >Guest House</option>
+                    <option value="Single Room" >Single Room</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Bedding Type</label>
+                <select name="bed" class="form-control" required>
+                    <option value="" selected></option>
+                    <option value="Single">Single</option>
+                    <option value="Double">Double</option>
+                    <option value="Triple">Triple</option>
+                    <option value="Quad">Quad</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Room Price</label>
+                <input name="roomPrice" type="text" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label>No. of Rooms *</label>
+                <select name="nroom" class="form-control" required>
+                    <option value="" selected></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Total Cost</label>
+                <input name="totalCost" id="totalCostField" type="text" class="form-control">
+
+                <!-- <input name="totalCost" type="text" class="form-control" readonly> -->
+            </div>
+            <div class="form-group">
+                <label>Check-In</label>
+                <input name="cin" id="checkIn" type="datetime-local" class="form-control">
+            </div>
+
+            <!-- Check-Out -->
+            <div class="form-group">
+                <label>Check-Out</label>
+                <input name="cout" id="checkOut" type="datetime-local" class="form-control" min="">
+            </div>
+
+
+
+
+            <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+        </form>
+    </div>
+
+    <!-- JS Scripts -->
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the room type and price parameters from the URL
+            var params = new URLSearchParams(window.location.search);
+            var roomTypeParam = params.get('roomType');
+            var roomPriceParam = params.get('price');
+
+            // Set the selected room type and price in the dropdown and input field
+            if (roomTypeParam) {
+                var roomTypeDropdown = document.querySelector('select[name="troom"]');
+                var matchingOption = Array.from(roomTypeDropdown.options)
+                    .find(option => option.value.toLowerCase() === roomTypeParam.toLowerCase());
+
+                // If a matching option is found, set it as selected
+                if (matchingOption) {
+                    matchingOption.selected = true;
+                }
+            }
+
+            if (roomPriceParam) {
+                // Set the room price in the input field
+                var roomPriceInput = document.querySelector('input[name="roomPrice"]');
+                if (roomPriceInput) {
+                    roomPriceInput.value = roomPriceParam;
+                }
+            }
+
+            document.querySelector('select[name="nroom"]').addEventListener('change', function () {
+                // Calculate the total cost based on the number of rooms and room price
+                var numberOfRooms = parseInt(this.value, 10);
+                var roomPrice = parseFloat(document.querySelector('input[name="roomPrice"]').value);
+                var totalCost = isNaN(numberOfRooms) || isNaN(roomPrice) ? 0 : numberOfRooms * roomPrice;
+
+                // Set the calculated total cost in the input field
+                document.querySelector('input[name="totalCost"]').value = totalCost.toFixed(2);
+                document.getElementById('totalCostField').value = totalCost;
+            });
+
+            var checkInInput = document.getElementById('checkIn');
+
+
+
+            checkInInput.addEventListener('change', function () {
+                var checkInDate = new Date(this.value);
+                var checkOutInput = document.getElementById('checkOut');
+                if (checkOutInput) {
+                    checkOutInput.min = this.value; 
+                }
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

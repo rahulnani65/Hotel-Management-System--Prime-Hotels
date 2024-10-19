@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+
+<head>
+    <!-- Fonts ============================================= -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i%7CPoppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Stylesheets ============================================= -->
+    <link href="../static/user-assets/css/external.css" rel="stylesheet">
+    <link href="../static/user-assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/user-assets/css/style.css" rel="stylesheet">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of the file. -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+      <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- Document Title ============================================= -->
+    <title>User Profile</title>
+</head>
+
+<body>
+    <!-- Page Title ============================================= -->
+    <header id="header" class="header">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation" aria-expanded="false" role="navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="/" class="navbar-brand">PRIME HOTELS</a>
+                </div>
+                <!-- Navigation Links -->
+                <div class="collapse navbar-collapse" id="navigation">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#" onclick="showPanel('userDetails')">User Details</a></li>
+                        <li><a href="#" onclick="showPanel('bookingDetails')">Booking Details</a></li>
+                        <li><a href="#" onclick="showPanel('transactionDetails')">Transaction Details</a></li>
+                        <li><a href="/">Home</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Title -->
+    <section id="page-title" class="page-title bg-overlay bg-overlay-dark2" style="margin-top: -3%">
+        <div class="bg-section">
+            <img src="../static/user-assets/page-titles/1.jpg" alt="Background" />
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+                    <div class="title title-1 text-center">
+                        <div class="title--content">
+                            <div class="title--heading">
+                                <h1>User Profile</h1>
+                            </div>
+                            <ol class="breadcrumb">
+                                <li><a href="/">Home</a></li>
+                                <li class="active">User Profile</li>
+                            </ol>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="userDetails" class="panel">
+                    <h2>User Details</h2>
+                    <table id="userTable" class="table">
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-xs-12">
+                <!-- Booking Details -->
+                <div id="bookingDetails" class="panel" style="display: none;">
+                    <h2>Booking Details</h2>
+                    <table id="bookingTable" class="table">
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>User ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Room Type</th>
+                                <th>Bedding Type</th>
+                                <th>Number of Rooms</th>
+                                <th>Check-In Date</th>
+                                <th>Check-Out Date</th>
+                                <th>Total Cost</th>
+                                <!-- Add more booking details as needed -->
+                            </tr>
+                        </thead>
+                        <tbody id="bookingTableBody"></tbody>
+                    </table>
+                </div>
+
+                <!-- Transaction Details -->
+                <div id="transactionDetails" class="panel" style="display: none;">
+                    <h2>Transaction Details</h2>
+                    <table id="transactionTable" class="table">
+                        <thead>
+                            <tr>
+                                <th>Transaction ID</th>
+                                <th>BookingID</th>
+                                <th>Amount</th>
+                                <th>Card Number</th>
+                                <th>Expiry Date</th>
+                                <!-- Add more transaction details as needed -->
+                            </tr>
+                        </thead>
+                        <tbody id="transactionTableBody"></tbody>
+                    </table>
+                </div>
+
+                <!-- Change Password -->
+                <div id="changePassword" class="panel" style="display: none;">
+                    <!-- <h2>Change Password</h2> -->
+                    <!-- <form id="changePasswordForm">
+                        <label for="oldPassword">Old Password:</label>
+                        <input type="password" id="oldPassword" name="oldPassword" required>
+
+                        <label for="newPassword">New Password:</label>
+                        <input type="password" id="newPassword" name="newPassword" required>
+
+                        <label for="confirmPassword">Confirm New Password:</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+                        <button type="button" onclick="submitChangePasswordForm()">Change Password</button>
+                    </form> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Navigation Links ============================================= -->
+  
+
+    <!-- Scripts ============================================= -->
+    <script src="../static/user-assets/js/jquery-2.2.4.min.js"></script>
+    <script src="../static/user-assets/js/plugins.js"></script>
+    <script src="../static/user-assets/js/functions.js"></script>
+    <script>
+        // Function to fetch and display user details
+        function fetchUserDetails() {
+            fetch('/api/user/details')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('User Details:', data);
+
+                    if (data && data.length > 0) {
+                        displayUserDetails(data);
+                    } else {
+                        console.error('Empty or invalid user data');
+                    }
+                })
+                .catch(error => console.error('Error fetching user details:', error));
+        }
+
+        // Function to display user details in the table
+        function displayUserDetails(userData) {
+            const userTableBody = document.getElementById('userTableBody');
+            userTableBody.innerHTML = ''; // Clear existing rows
+            console.log("this is the user data:  ", userData[0][0]);
+            const user = userData[0];
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${user[0]}</td>
+                <td>${user[1]}</td>
+                <td>${user[2]}</td>
+                <!-- Add more user details as needed -->
+            `;
+            userTableBody.appendChild(row);
+        }
+
+        // Function to fetch and display booking details
+        function fetchBookingDetails() {
+            fetch('/api/user/booking-details')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Booking Details:', data); // Log the data
+                    displayBookingDetails(data);
+                })
+                .catch(error => console.error('Error fetching booking details:', error));
+        }
+
+        // Function to display booking details in the table
+        function displayBookingDetails(bookingData) {
+            const bookingTableBody = document.getElementById('bookingTableBody');
+            bookingTableBody.innerHTML = ''; // Clear existing rows
+
+            bookingData.forEach(booking => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${booking[0]}</td>
+                    <td>${booking[1]}</td>
+                    <td>${booking[2]}</td>
+                    <td>${booking[3]}</td>
+                    <td>${booking[4]}</td>
+                    <td>${booking[5]}</td>
+                    <td>${booking[6]}</td>
+                    <td>${booking[7]}</td>
+                    <td>${booking[8]}</td>
+                    <td>${booking[9]}</td>
+                    <td>${booking[10]}</td>
+                    <td>${booking[11]}</td>
+                `;
+                bookingTableBody.appendChild(row);
+            });
+        }
+
+        // Function to fetch and display transaction details
+        function fetchTransactionDetails() {
+            fetch('/api/user/transaction-details')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Transaction Details:', data); // Log the data
+                    displayTransactionDetails(data);
+                })
+                .catch(error => console.error('Error fetching transaction details:', error));
+        }
+
+        // Function to display transaction details in the table
+        function displayTransactionDetails(transactionData) {
+            const transactionTableBody = document.getElementById('transactionTableBody');
+            transactionTableBody.innerHTML = ''; // Clear existing rows
+
+            transactionData.forEach(transaction => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${transaction[0]}</td>
+                    <td>${transaction[1]}</td>
+                    <td>${transaction[2]}</td>
+                    <td>${transaction[3]}</td>
+                    <td>${transaction[4]}</td>
+                `;
+                transactionTableBody.appendChild(row);
+            });
+        }
+
+        function submitChangePasswordForm() {
+    // Get form data
+    var oldPassword = document.getElementById("oldPassword").value;
+    var newPassword = document.getElementById("newPassword").value;
+    var confirmPassword = document.getElementById("confirmPassword").value;
+
+    // Validate form data (you can add more validation if needed)
+
+    // Prepare data for sending to Flask route
+    var data = {
+        old_password: oldPassword,
+        new_password: newPassword,
+        confirm_password: confirmPassword
+    };
+
+    // Make a POST request to Flask route
+    fetch('/api/user/change-password', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',  // Make sure this is set to 'application/json'
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle response from Flask route
+        console.log(data);
+        // Add logic to handle the response, e.g., show a message to the user
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+        // Fetch and display user details, booking details, and transaction details when the page loads
+        window.onload = function() {
+            fetchUserDetails();
+            fetchBookingDetails();
+            fetchTransactionDetails();
+        };
+
+        // Function to toggle the visibility of different panels
+        function showPanel(panelId) {
+            const panels = ['userDetails', 'bookingDetails', 'transactionDetails', 'changePassword'];
+            panels.forEach(panel => {
+                const element = document.getElementById(panel);
+                if (panel === panelId) {
+                    element.style.display = 'block';
+                } else {
+                    element.style.display = 'none';
+                }
+                if (panel === 'changePassword') {
+                    document.getElementById('changePassword').style.display = 'block';
+                } else {
+                    document.getElementById('changePassword').style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+
+</body>
+
+</html>

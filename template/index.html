@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+
+  <link rel="stylesheet" href="../static/fonts/icomoon/style.css">
+
+  <link rel="stylesheet" href="../static/css/owl.carousel.min.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+
+  <!-- Style -->
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="">
+
+  <title>PRIME HOTELS</title>
+</head>
+
+<body>
+
+  <a id="top"></a>
+  <div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close mt-3">
+        <span class="icon-close2 js-menu-toggle"></span>
+      </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+  </div>
+
+
+
+  <header id="navbar" class="site-navbar site-navbar-target" role="banner">
+
+    <div class="container">
+      <div class="row align-items-center position-relative">
+
+        <div class="col-3">
+          <div class="site-logo">
+            <a action="/" href="#" class="font-weight-bold">PRIME HOTELS</a>
+          </div>
+        </div>
+
+        <div class="col-9 text-right">
+          <span class="d-inline-block d-lg-none">
+            <a href="#" class="text-primary site-menu-toggle js-menu-toggle py-5">
+              <span class="icon-menu h3 text-white"></span>
+            </a>
+          </span>
+
+          <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
+            <ul class="site-menu main-menu js-clone-nav ml-auto">
+              <li><a href="#home" class="nav-link">Home</a></li>
+              <li><a href="#about" class="nav-link">About</a></li>
+              <li><a href="#services" class="nav-link">Services</a></li>
+              <li><a href="#contact" class="nav-link">Contact</a></li>
+              {% if username %}
+              <a href="./userprofile.html" style="color: rgb(255, 255, 255);">Hello, {{ username }}!</a>
+              <a href="#" id="logout" onclick="logout()">Logout</a>
+              {% else %}
+              <li><a href="./login.html">Login/SignUp</a></li>
+              {% endif %}
+
+            </ul>
+          </nav>
+
+        </div>
+
+
+      </div>
+    </div>
+
+  </header>
+
+
+  <div class="hero"></div>
+  <div id="about" class="clearfix"> </div>
+  <div class="banner-bottom">
+    <div class="container">
+      <div class="agileits_banner_bottom">
+        <h3><span>Experience a good stay, enjoy fantastic offers</span> Find our friendly welcoming reception</h3>
+      </div>
+      <div class="w3ls_banner_bottom_grids">
+        <ul class="cbp-ig-grid">
+          <li>
+            <div class="w3_grid_effect">
+              <span class="cbp-ig-icon w3_road"></span>
+              <h4 class="cbp-ig-title">MASTER BEDROOMS</h4>
+              <span class="cbp-ig-category">SUN RISE</span>
+            </div>
+          </li>
+          <li>
+            <div class="w3_grid_effect">
+              <span class="cbp-ig-icon w3_cube"></span>
+              <h4 class="cbp-ig-title">SEA VIEW BALCONY</h4>
+              <span class="cbp-ig-category">SUN RISE</span>
+            </div>
+          </li>
+          <li>
+            <div class="w3_grid_effect">
+              <span class="cbp-ig-icon w3_users"></span>
+              <h4 class="cbp-ig-title">LARGE CAFE</h4>
+              <span class="cbp-ig-category">SUN RISE</span>
+            </div>
+          </li>
+          <li>
+            <div class="w3_grid_effect">
+              <span class="cbp-ig-icon w3_ticket"></span>
+              <h4 class="cbp-ig-title">WIFI COVERAGE</h4>
+              <span class="cbp-ig-category">SUN RISE</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- //banner-bottom -->
+
+  <!-- /about -->
+  <div class="about-wthree" id="about">
+    <div class="container">
+      <div class="ab-w3l-spa">
+        <h3 class="title-w3-agileits title-black-wthree">About Our PRIME Hotels</h3>
+        <p class="about-para-w3ls">A place for you to tell a story and let your users know a little more about your
+          products and services.</p>
+        <img src="../static/images/about.jpg" class="img-responsive" alt="Hair Salon">
+        <div class="w3l-slider-img">
+          <img src="../static/images/a1.jpg" class="img-responsive" alt="Hair Salon">
+        </div>
+        <div class="w3ls-info-about">
+          <h4>You'll love all the amenities we offer!</h4>
+        </div>
+      </div>
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+  <!-- //about -->
+
+
+  <!--sevices-->
+  <div id="services" class="advantages">
+    <div class="container">
+      <div class="advantages-main">
+        <h3 class="title-w3-agileits">Our Services</h3>
+        <div class="advantage-bottom">
+          <div class="col-md-6 advantage-grid left-w3ls wow bounceInLeft" data-wow-delay="0.3s">
+            <div class="advantage-block ">
+              <i class="fa fa-credit-card" aria-hidden="true"></i>
+              <h4>Stay First, Pay After! </h4>
+              <p>At times, however, circumstances and duties often arise, both by necessity and by choice, so that
+                pleasures may also occur</p>
+              <p><i class="fa fa-check" aria-hidden="true"></i>Decorated room, proper air conditioned</p>
+              <p><i class="fa fa-check" aria-hidden="true"></i>Private balcony</p>
+
+            </div>
+          </div>
+          <div class="col-md-6 advantage-grid right-w3ls wow zoomIn" data-wow-delay="0.3s">
+            <div class="advantage-block">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              <h4>24 Hour Restaurant</h4>
+              <p>However, at times, and from duties, and from the necessities of things, it often happens that even
+                pleasures.</p>
+              <p><i class="fa fa-check" aria-hidden="true"></i>24 hours room service</p>
+              <p><i class="fa fa-check" aria-hidden="true"></i>24-hour Concierge service</p>
+            </div>
+          </div>
+          <div class="clearfix"> </div>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!--//sevices-->
+
+  <!-- rooms & rates -->
+  <div class="plans-section" id="rooms">
+    <div class="container">
+      <h3 class="title-w3-agileits title-black-wthree">Rooms And Rates</h3>
+      <div class="priceing-table-main">
+        <div class="col-md-3 price-grid">
+          <div class="price-block agile">
+            <div class="price-gd-top">
+              <img src="../static/images/deluxroom.jpg" alt=" " class="img-responsive" />
+              <h4>Deluxe Room</h4>
+            </div>
+            <div class="price-gd-bottom">
+              <div class="price-list">
+                <ul>
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+
+                </ul>
+              </div>
+              <div class="price-selet">
+                <h3><span>$</span>320</h3>
+                <a href="./booking.html?roomType=Deluxe%20Room&price=320">Book Deluxe Room</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 price-grid ">
+          <div class="price-block agile">
+            <div class="price-gd-top">
+              <img src="../static/images/luxuryroom.jpg" alt=" " class="img-responsive" />
+              <h4>Luxury Room</h4>
+            </div>
+            <div class="price-gd-bottom">
+              <div class="price-list">
+                <ul>
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                </ul>
+              </div>
+              <div class="price-selet">
+                <h3><span>$</span>220</h3>
+                <!-- Luxury Room -->
+                <a href="./booking.html?roomType=Superior%20Room&price=220">Book Luxury Room</a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 price-grid lost">
+          <div class="price-block agile">
+            <div class="price-gd-top">
+              <img src="../static/images/guest_house.avif" alt=" " class="img-responsive" />
+              <h4>Guest House</h4>
+            </div>
+            <div class="price-gd-bottom">
+              <div class="price-list">
+                <ul>
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                </ul>
+              </div>
+              <div class="price-selet">
+                <h3><span>$</span>180</h3>
+                <a href="./booking.html?roomType=Guest%20House&price=180">Book Guest House</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 price-grid wthree lost">
+          <div class="price-block agile">
+            <div class="price-gd-top ">
+              <img src="../static/images/singleroom.avif" alt=" " class="img-responsive" />
+              <h4>Single Room</h4>
+            </div>
+            <div class="price-gd-bottom">
+              <div class="price-list">
+                <ul>
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                </ul>
+              </div>
+              <div class="price-selet">
+                <h3><span>$</span> 150</h3>
+                <a href="./booking.html?roomType=Single%20Room&price=150">Book Single Room</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"> </div>
+      </div>
+    </div>
+  </div>
+  <!-- //prices-->
+
+
+
+  <!-- ContactUs -->
+  <div id="contact" class="background">
+    <div class="container">
+      <div class="screen">
+        <div class="screen-body">
+          <div class="screen-body-item left">
+            <div class="app-title">
+              <span>CONTACT</span>
+              <span>US</span>
+            </div>
+            <div class="app-contact">CONTACT INFO : +62 81 314 928 595</div>
+          </div>
+          <div class="screen-body-item">
+            <div class="app-form">
+              <form id="contactForm" action="https://formspree.io/f/mnqevakw" method="POST">
+                <div class="app-form-group">
+                  <input id="nameInput" class="app-form-control" type="text" name="name" placeholder="NAME" required>
+                </div>
+                <div class="app-form-group">
+                  <input id="emailInput" class="app-form-control" type="email" name="_replyto" placeholder="EMAIL"
+                    required>
+                </div>
+                <div class="app-form-group">
+                  <input id="contactNoInput" class="app-form-control" type="tel" name="contact_no"
+                    placeholder="CONTACT NO" required>
+                </div>
+                <div class="app-form-group message">
+                  <input id="messageInput" class="app-form-control" type="text" name="message" placeholder="MESSAGE"
+                    required>
+                </div>
+                <div class="app-form-group buttons">
+                  <button type="button" class="app-form-button" onclick="resetForm()">CANCEL</button>
+                  <button type="submit" class="app-form-button">SEND</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="credits">
+        <a class="credits-link" href="#" target="_blank">
+          <svg class="dribbble" viewBox="0 0 200 200">
+            <g stroke="#ffffff" fill="none">
+              <circle cx="100" cy="100" r="90" stroke-width="20"></circle>
+              <path d="M62.737004,13.7923523 C105.08055,51.0454853 135.018754,126.906957 141.768278,182.963345"
+                stroke-width="20"></path>
+              <path d="M10.3787186,87.7261455 C41.7092324,90.9577894 125.850356,86.5317271 163.474536,38.7920951"
+                stroke-width="20"></path>
+              <path d="M41.3611549,163.928627 C62.9207607,117.659048 137.020642,86.7137169 189.041451,107.858103"
+                stroke-width="20"></path>
+            </g>
+          </svg>
+          Prime Hotels </a>
+      </div>
+    </div>
+  </div>
+
+
+  <footer>
+    <p>&copy; 2024 PRIME Hotels. All rights reserved.</p>
+  </footer>
+  <a href="#top" id="back-to-top">Back to Top</a>
+
+  <script src="../static/js/jquery-3.3.1.min.js"></script>
+  <script src="../static/js/popper.min.js"></script>
+  <script src="../static/js/bootstrap.min.js"></script>
+  <script src="../static/js/jquery.sticky.js"></script>
+  <script src="../static/js/main.js"></script>
+
+
+</body>
+
+</html>
